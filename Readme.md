@@ -8,7 +8,7 @@ This project demonstrates how large-scale event data can be managed and rendered
 ## Live Demo
 
 Netlify Deployment:  
-(Add your Netlify URL here)
+https://ky-event-management-system.netlify.app/
 
 ---
 
