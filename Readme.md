@@ -49,5 +49,4 @@ are stored in a **separate JavaScript data file**, and the UI renders them dynam
 
 ---
 
-## 📂 Project Structure
 
