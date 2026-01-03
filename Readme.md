@@ -1,0 +1,1 @@
+A frontend-only Event Management System that dynamically renders college fest and conference events from a structured data source. The project demonstrates clean separation of UI and data, scalable frontend architecture, and real-world static deployment using Netlify.
