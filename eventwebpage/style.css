@@ -1,7 +1,12 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
+    margin: 0;
     font-family: Arial, sans-serif;
     background: #f4f6f8;
-    margin: 0;
+    color: #222;
 }
 
 header {
@@ -11,9 +16,38 @@ header {
     text-align: center;
 }
 
+.controls {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 10px;
+    text-align: center;
+}
+
+.controls input {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.buttons button {
+    margin: 5px;
+    padding: 8px 14px;
+    border: none;
+    background: #1f2933;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.buttons button:hover {
+    background: #3a4a5a;
+}
+
 main {
     max-width: 900px;
-    margin: 40px auto;
+    margin: 20px auto;
     padding: 10px;
 }
 
@@ -22,23 +56,21 @@ main {
     padding: 20px;
     margin-bottom: 25px;
     border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
 .event-card h2 {
     margin-top: 0;
-    color: #222;
 }
 
 .meta {
-    color: #555;
     font-size: 14px;
+    color: #555;
     margin-bottom: 15px;
 }
 
-.section-title {
+.event-card h4 {
     margin-top: 20px;
-    font-weight: bold;
 }
 
 ul {
@@ -47,7 +79,7 @@ ul {
 
 footer {
     background: #1f2933;
-    color: white;
+    color: #fff;
     text-align: center;
     padding: 15px;
 }

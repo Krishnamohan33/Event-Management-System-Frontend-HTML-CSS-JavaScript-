@@ -1,33 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-
-    <!-- Mobile & responsive support -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Event Management System</title>
+    <meta name="description" content="A static, data-driven event management system for college fests and conferences.">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- SEO Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "College Events Platform",
+      "eventStatus": "https://schema.org/EventScheduled"
+    }
+    </script>
 </head>
 <body>
 
 <header>
     <h1>Event Management System</h1>
-    <p>Frontend | Data-Driven | No Backend</p>
+    <p>Static • Data-Driven • Frontend Only</p>
 </header>
 
+<section class="controls">
+    <input
+        type="search"
+        placeholder="Search by event or college name..."
+        oninput="searchEvents(this.value)"
+    />
+
+    <div class="buttons">
+        <button onclick="filterEvents('all')">All</button>
+        <button onclick="filterEvents('technical')">Technical</button>
+        <button onclick="filterEvents('nonTechnical')">Non-Technical</button>
+        <button onclick="filterEvents('workshop')">Workshops</button>
+    </div>
+</section>
+
 <main id="eventContainer">
-    <!-- Events load here automatically -->
+    <!-- Events render here -->
 </main>
 
 <footer>
     <p>© 2026 Event Management System</p>
 </footer>
 
-
 <script src="events.js" defer></script>
-
 </body>
 </html>
-

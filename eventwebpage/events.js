@@ -1,77 +1,153 @@
-// ===== EVENT DATA (EDIT ONLY THIS FILE) =====
+const EVENTS = [
+  {
+    id: "electera-26",
+    title: "ELECT-ERA ’26",
+    date: "07 Jan 2026",
+    college: "Coimbatore Institute of Technology",
+    location: "Coimbatore, India",
+    category: ["technical"],
 
-const events = [
-    {
-        title: "Tech Innovation Meetup 2026",
-        date: "March 10, 2026",
-        time: "10:00 AM – 4:00 PM",
-        location: "Chennai, India",
-        description: "A technology meetup focusing on AI, Web Development, and Game Design.",
+    description:
+      "A flagship technical symposium focusing on innovation and emerging technologies.",
 
-        schedule: [
-            "10:00 AM – Opening Ceremony",
-            "11:00 AM – AI in Real World",
-            "01:00 PM – Lunch Break",
-            "02:00 PM – Game Development Talk",
-            "03:30 PM – Networking"
-        ],
-
-        speakers: [
-            "Dr. Arun – AI Researcher",
-            "Meera – Full Stack Developer",
-            "Rahul – Indie Game Developer"
-        ]
-    },
-
-    {
-        title: "College Cultural Fest",
-        date: "April 5, 2026",
-        time: "9:00 AM – 8:00 PM",
-        location: "University Campus",
-        description: "A full-day cultural event with music, dance, and competitions.",
-
-        schedule: [
-            "09:00 AM – Inauguration",
-            "11:00 AM – Dance Events",
-            "02:00 PM – Music Bands",
-            "06:00 PM – Awards Ceremony"
-        ],
-
-        speakers: [
-            "Chief Guest – Film Director",
-            "Student Cultural Committee"
-        ]
+    events: {
+      technical: [
+        "Flagship Event",
+        "Surge Event",
+        "Technical Event"
+      ],
+      nonTechnical: [],
+      workshops: []
     }
+  },
+
+  {
+    id: "mxcel-2k26",
+    title: "MXCEL 2K26",
+    date: "22 Jan 2026",
+    college: "Kongu Engineering College",
+    location: "Erode, India",
+    category: ["technical", "nonTechnical", "workshop"],
+
+    description:
+      "An inter-college symposium encouraging creativity and technical excellence.",
+
+    events: {
+      technical: [
+        "Paper Presentation",
+        "CADCode Master",
+        "Quiz Mania"
+      ],
+      nonTechnical: [
+        "Adzap",
+        "Meme Creation",
+        "Let's Vibe"
+      ],
+      workshops: [
+        "Emerging Trends in 3D Printing Technology"
+      ]
+    }
+  },
+
+  {
+    id: "utsava-26",
+    title: "UTSAVA ’26",
+    date: "30 Jan 2026",
+    college: "Sri Ramakrishna Engineering College",
+    location: "Coimbatore, India",
+    category: ["technical", "nonTechnical", "workshop"],
+
+    description:
+      "A mega symposium featuring competitions, workshops, and innovation challenges.",
+
+    events: {
+      technical: [
+        "Drone Racing",
+        "Robo Race",
+        "AI Unlocked",
+        "CADDATHON"
+      ],
+      nonTechnical: [
+        "Treasure Hunt",
+        "Squid Game",
+        "IPL Auction"
+      ],
+      workshops: [
+        "Industry 4.0",
+        "3D Printing",
+        "AI/ML in EV"
+      ]
+    }
+  }
 ];
 
-// ===== RENDER LOGIC (DO NOT TOUCH) =====
-
 const container = document.getElementById("eventContainer");
+let currentList = EVENTS;
 
-events.forEach(event => {
-    const card = document.createElement("div");
-    card.className = "event-card";
+function renderEvents(list) {
+    container.innerHTML = "";
 
-    card.innerHTML = `
-        <h2>${event.title}</h2>
-        <p class="meta">
-            📅 ${event.date} <br>
-            ⏰ ${event.time} <br>
-            📍 ${event.location}
-        </p>
+    if (!list.length) {
+        container.innerHTML = "<p>No events found.</p>";
+        return;
+    }
 
-        <p>${event.description}</p>
+    list.forEach(e => {
+        const tech = e.events?.technical ?? [];
+        const nonTech = e.events?.nonTechnical ?? [];
+        const workshops = e.events?.workshops ?? [];
 
-        <div class="section-title">Schedule</div>
+        const card = document.createElement("article");
+        card.className = "event-card";
+
+        card.innerHTML = `
+            <h2>${e.title}</h2>
+
+            <p class="meta">
+                📅 ${e.date}<br>
+                🏫 ${e.college}<br>
+                📍 ${e.location}
+            </p>
+
+            <p>${e.description}</p>
+
+            ${tech.length ? section("Technical Events", tech) : ""}
+            ${nonTech.length ? section("Non-Technical Events", nonTech) : ""}
+            ${workshops.length ? section("Workshops", workshops) : ""}
+        `;
+
+        container.appendChild(card);
+    });
+}
+
+function section(title, items) {
+    return `
+        <h4>${title}</h4>
         <ul>
-            ${event.schedule.map(item => `<li>${item}</li>`).join("")}
-        </ul>
-
-        <div class="section-title">Speakers</div>
-        <ul>
-            ${event.speakers.map(person => `<li>${person}</li>`).join("")}
+            ${items.map(i => `<li>${i}</li>`).join("")}
         </ul>
     `;
+}
 
-    container.appendChild(card);
-});
+function filterEvents(type) {
+    if (type === "all") {
+        currentList = EVENTS;
+    } else {
+        currentList = EVENTS.filter(e => e.category.includes(type));
+    }
+    renderEvents(currentList);
+}
+
+function searchEvents(query) {
+    const q = query.toLowerCase();
+
+    renderEvents(
+        currentList.filter(e =>
+            e.title.toLowerCase().includes(q) ||
+            e.college.toLowerCase().includes(q)
+        )
+    );
+}
+
+// Initial render
+renderEvents(EVENTS);
